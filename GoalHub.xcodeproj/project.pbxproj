@@ -51,6 +51,7 @@
 		2DD7576A202DAEEB00C3EDB2 /* GoalHub */ = {
 			isa = PBXGroup;
 			children = (
+				2DD75779202DB4D000C3EDB2 /* Controller */,
 				2DD7576B202DAEEB00C3EDB2 /* AppDelegate.swift */,
 				2DD7576D202DAEEB00C3EDB2 /* Assets.xcassets */,
 				2DD7576F202DAEEB00C3EDB2 /* MainMenu.xib */,
@@ -58,6 +59,13 @@
 				2DD75773202DAEEB00C3EDB2 /* GoalHub.entitlements */,
 			);
 			path = GoalHub;
+			sourceTree = "<group>";
+		};
+		2DD75779202DB4D000C3EDB2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
