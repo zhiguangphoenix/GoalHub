@@ -12,18 +12,28 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="GoalHub" customModuleProvider="target"/>
-        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <customObject id="ZAF-7A-cov" customClass="StatusMenuController" customModule="GoalHub" customModuleProvider="target">
+            <connections>
+                <outlet property="preferences" destination="tkC-x5-BmW" id="5ZB-g1-3sq"/>
+                <outlet property="quit" destination="C8N-tH-4vx" id="AUY-fN-Q2F"/>
+                <outlet property="statusMenu" destination="jpy-e4-a7t" id="2VK-kj-Yd5"/>
+            </connections>
+        </customObject>
         <menu id="jpy-e4-a7t">
             <items>
-                <menuItem title="Preferences" id="tkC-x5-BmW">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="Preferences" keyEquivalent="," id="tkC-x5-BmW">
+                    <connections>
+                        <action selector="preferencesClicked:" target="ZAF-7A-cov" id="0kt-gr-g4u"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="ISk-os-GvK"/>
-                <menuItem title="Quit" id="C8N-tH-4vx">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="Quit" keyEquivalent="q" id="C8N-tH-4vx">
+                    <connections>
+                        <action selector="quitClicked:" target="ZAF-7A-cov" id="Rlr-Vy-B6Z"/>
+                    </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-392" y="-130.5"/>
+            <point key="canvasLocation" x="-746" y="-145"/>
         </menu>
     </objects>
 </document>

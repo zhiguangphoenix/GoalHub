@@ -7,18 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D88F827202E97DD00142392 /* GithubClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D88F826202E97DD00142392 /* GithubClient.swift */; };
+		2D88F82A202EA2B800142392 /* PreferencesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D88F828202EA2B800142392 /* PreferencesWindow.swift */; };
+		2D88F82B202EA2B800142392 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D88F829202EA2B800142392 /* PreferencesWindow.xib */; };
 		2DD7576C202DAEEB00C3EDB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7576B202DAEEB00C3EDB2 /* AppDelegate.swift */; };
 		2DD7576E202DAEEB00C3EDB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DD7576D202DAEEB00C3EDB2 /* Assets.xcassets */; };
 		2DD75771202DAEEB00C3EDB2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DD7576F202DAEEB00C3EDB2 /* MainMenu.xib */; };
+		2DD75781202DDFFB00C3EDB2 /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD75780202DDFFB00C3EDB2 /* StatusMenuController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D88F826202E97DD00142392 /* GithubClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubClient.swift; sourceTree = "<group>"; };
+		2D88F828202EA2B800142392 /* PreferencesWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindow.swift; sourceTree = "<group>"; };
+		2D88F829202EA2B800142392 /* PreferencesWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
 		2DD75768202DAEEB00C3EDB2 /* GoalHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoalHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DD7576B202DAEEB00C3EDB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2DD7576D202DAEEB00C3EDB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DD75770202DAEEB00C3EDB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2DD75772202DAEEB00C3EDB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DD75773202DAEEB00C3EDB2 /* GoalHub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoalHub.entitlements; sourceTree = "<group>"; };
+		2DD75780202DDFFB00C3EDB2 /* StatusMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,21 +59,17 @@
 		2DD7576A202DAEEB00C3EDB2 /* GoalHub */ = {
 			isa = PBXGroup;
 			children = (
-				2DD75779202DB4D000C3EDB2 /* Controller */,
 				2DD7576B202DAEEB00C3EDB2 /* AppDelegate.swift */,
 				2DD7576D202DAEEB00C3EDB2 /* Assets.xcassets */,
 				2DD7576F202DAEEB00C3EDB2 /* MainMenu.xib */,
 				2DD75772202DAEEB00C3EDB2 /* Info.plist */,
 				2DD75773202DAEEB00C3EDB2 /* GoalHub.entitlements */,
+				2DD75780202DDFFB00C3EDB2 /* StatusMenuController.swift */,
+				2D88F826202E97DD00142392 /* GithubClient.swift */,
+				2D88F828202EA2B800142392 /* PreferencesWindow.swift */,
+				2D88F829202EA2B800142392 /* PreferencesWindow.xib */,
 			);
 			path = GoalHub;
-			sourceTree = "<group>";
-		};
-		2DD75779202DB4D000C3EDB2 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DD7576E202DAEEB00C3EDB2 /* Assets.xcassets in Resources */,
+				2D88F82B202EA2B800142392 /* PreferencesWindow.xib in Resources */,
 				2DD75771202DAEEB00C3EDB2 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,6 +144,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D88F82A202EA2B800142392 /* PreferencesWindow.swift in Sources */,
+				2DD75781202DDFFB00C3EDB2 /* StatusMenuController.swift in Sources */,
+				2D88F827202E97DD00142392 /* GithubClient.swift in Sources */,
 				2DD7576C202DAEEB00C3EDB2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
