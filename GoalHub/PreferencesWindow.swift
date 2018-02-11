@@ -8,7 +8,20 @@
 
 import Cocoa
 
+protocol PreferencesWindowDelegate {
+    func preferencesDidUpdate()
+}
+
 class PreferencesWindow: NSWindowController {
+    @IBOutlet weak var userInput: NSTextField!
+    @IBOutlet weak var tokenInput: NSTextField!
+    @IBOutlet weak var goalInput: NSComboBox!
+    @IBOutlet weak var userUpdatedNoti: NSTextField!
+    @IBOutlet weak var tokenUpdatedNoti: NSTextField!
+    @IBOutlet weak var goalUpdatedNoti: NSTextField!
+    
+    var delegate: PreferencesWindowDelegate?
+    
     override var windowNibName: NSNib.Name? {
         return NSNib.Name(rawValue: "PreferencesWindow")
     }
@@ -16,5 +29,57 @@ class PreferencesWindow: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+        fillTokenInput()
+    }
+    
+    func fillTokenInput() {
+        let defaults = UserDefaults.standard
+        
+        if let token = defaults.string(forKey: "token") {
+            tokenInput.stringValue = token
+        }
+        if let user = defaults.string(forKey: "user") {
+            userInput.stringValue = user
+        }
+        if let goal = defaults.string(forKey: "goal") {
+            goalInput.stringValue = goal
+        }
+      
+    }
+    
+    @IBAction func updateToken(_ sender: NSButton) {
+        let defaults = UserDefaults.standard
+        let token = tokenInput.stringValue
+        
+        defaults.set(token, forKey: "token")
+        delegate?.preferencesDidUpdate()
+        tokenUpdatedNoti.stringValue = "👌Updated!"
+        delayRemoveText(tokenUpdatedNoti, 3)
+    }
+    
+    @IBAction func updateUser(_ sender: NSButton) {
+        let defaults = UserDefaults.standard
+        let user = userInput.stringValue
+        
+        defaults.set(user, forKey: "user")
+        delegate?.preferencesDidUpdate()
+        userUpdatedNoti.stringValue = "👌Updated!"
+        delayRemoveText(userUpdatedNoti, 3)
+    }
+    
+    @IBAction func updateGoal(_ sender: NSButton) {
+        let defaults = UserDefaults.standard
+        let goal = goalInput.stringValue
+        
+        defaults.set(goal, forKey: "goal")
+        delegate?.preferencesDidUpdate()
+        goalUpdatedNoti.stringValue = "👌Updated!"
+        delayRemoveText(goalUpdatedNoti, 3)
+    }
+    
+    func delayRemoveText(_ field: NSTextField, _ delay: Int) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(delay)) {
+            field.stringValue = ""
+        }
     }
 }

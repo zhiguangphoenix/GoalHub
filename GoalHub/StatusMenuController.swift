@@ -8,17 +8,26 @@
 
 import Cocoa
 
-class StatusMenuController: NSObject {
+class StatusMenuController: NSObject, PreferencesWindowDelegate {
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var preferences: NSMenuItem!
     @IBOutlet weak var quit: NSMenuItem!
     
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
     var preferencesWindow: PreferencesWindow!
+    var githubClient: GithubClient!
     
     override func awakeFromNib() {
         initStatusMenu()
         initPreferencesWindow()
+        
+        githubClient = GithubClient()
+        githubClient.fetchProfile()
+    }
+    
+    func preferencesDidUpdate() {
+        githubClient.updateUserAndToken()
+        githubClient.fetchProfile()
     }
     
     func initStatusMenu() {
@@ -30,10 +39,12 @@ class StatusMenuController: NSObject {
     
     func initPreferencesWindow() {
         preferencesWindow = PreferencesWindow()
+        preferencesWindow.delegate = self
     }
     
     @IBAction func preferencesClicked(_ sender: NSMenuItem) {
         preferencesWindow.showWindow(sender)
+        NSApp.activate(ignoringOtherApps: true)
     }
     
     @IBAction func quitClicked(_ sender: NSMenuItem) {

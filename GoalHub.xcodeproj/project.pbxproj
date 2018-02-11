@@ -10,16 +10,37 @@
 		2D88F827202E97DD00142392 /* GithubClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D88F826202E97DD00142392 /* GithubClient.swift */; };
 		2D88F82A202EA2B800142392 /* PreferencesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D88F828202EA2B800142392 /* PreferencesWindow.swift */; };
 		2D88F82B202EA2B800142392 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D88F829202EA2B800142392 /* PreferencesWindow.xib */; };
+		2D88F86220302F4C00142392 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D88F85B20302DA200142392 /* Alamofire.framework */; };
+		2D88F86320302F4C00142392 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D88F85B20302DA200142392 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2D88F86520302F5000142392 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D88F85D20302DA700142392 /* SwiftyJSON.framework */; };
+		2D88F86620302F5000142392 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D88F85D20302DA700142392 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2DD7576C202DAEEB00C3EDB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7576B202DAEEB00C3EDB2 /* AppDelegate.swift */; };
 		2DD7576E202DAEEB00C3EDB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DD7576D202DAEEB00C3EDB2 /* Assets.xcassets */; };
 		2DD75771202DAEEB00C3EDB2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DD7576F202DAEEB00C3EDB2 /* MainMenu.xib */; };
 		2DD75781202DDFFB00C3EDB2 /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD75780202DDFFB00C3EDB2 /* StatusMenuController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2D88F86420302F4C00142392 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2D88F86620302F5000142392 /* SwiftyJSON.framework in Embed Frameworks */,
+				2D88F86320302F4C00142392 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2D88F826202E97DD00142392 /* GithubClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubClient.swift; sourceTree = "<group>"; };
 		2D88F828202EA2B800142392 /* PreferencesWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindow.swift; sourceTree = "<group>"; };
 		2D88F829202EA2B800142392 /* PreferencesWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
+		2D88F85B20302DA200142392 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/Mac/Alamofire.framework; sourceTree = "<group>"; };
+		2D88F85D20302DA700142392 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
 		2DD75768202DAEEB00C3EDB2 /* GoalHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoalHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DD7576B202DAEEB00C3EDB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2DD7576D202DAEEB00C3EDB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -34,17 +55,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D88F86520302F5000142392 /* SwiftyJSON.framework in Frameworks */,
+				2D88F86220302F4C00142392 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D88F85A20302DA200142392 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2D88F85D20302DA700142392 /* SwiftyJSON.framework */,
+				2D88F85B20302DA200142392 /* Alamofire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2DD7575F202DAEEB00C3EDB2 = {
 			isa = PBXGroup;
 			children = (
 				2DD7576A202DAEEB00C3EDB2 /* GoalHub */,
 				2DD75769202DAEEB00C3EDB2 /* Products */,
+				2D88F85A20302DA200142392 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,6 +115,7 @@
 				2DD75764202DAEEB00C3EDB2 /* Sources */,
 				2DD75765202DAEEB00C3EDB2 /* Frameworks */,
 				2DD75766202DAEEB00C3EDB2 /* Resources */,
+				2D88F86420302F4C00142392 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -278,6 +312,10 @@
 				CODE_SIGN_ENTITLEMENTS = GoalHub/GoalHub.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = GoalHub/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.ilime.GoalHub;
@@ -293,6 +331,10 @@
 				CODE_SIGN_ENTITLEMENTS = GoalHub/GoalHub.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = GoalHub/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.ilime.GoalHub;
