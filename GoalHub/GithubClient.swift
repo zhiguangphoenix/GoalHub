@@ -30,7 +30,7 @@ class GithubClient {
         }
     }
     
-    func fetchProfile() {
+    func fetchProfile(callback: @escaping (String) -> Void) {
         if user != "" {
             Alamofire.request("https://github.com/\(user)").responseString { response in
                 if response.result.isSuccess {
@@ -42,7 +42,8 @@ class GithubClient {
                             .firstMatch(in: docString, range: NSRange(docString.startIndex..., in: docString))?
                             .range
                         let result = String(docString[Range(resultRange!, in: docString)!])
-                        NSLog(result)
+                        
+                        callback(result)
                     } catch let error {
                         NSLog("Invalid regexp: \(error.localizedDescription)")
                     }

@@ -123,6 +123,7 @@
                                 <string>200</string>
                                 <string>500</string>
                                 <string>1000</string>
+                                <string>9999</string>
                             </objectValues>
                         </comboBoxCell>
                     </comboBox>
@@ -151,7 +152,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="57" y="136"/>
+            <point key="canvasLocation" x="-45" y="17"/>
         </window>
     </objects>
 </document>

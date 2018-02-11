@@ -12,22 +12,37 @@ class StatusMenuController: NSObject, PreferencesWindowDelegate {
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var preferences: NSMenuItem!
     @IBOutlet weak var quit: NSMenuItem!
+    @IBOutlet weak var goalView: GoalView!
     
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
     var preferencesWindow: PreferencesWindow!
     var githubClient: GithubClient!
+    var goalMenuItem: NSMenuItem!
     
     override func awakeFromNib() {
         initStatusMenu()
         initPreferencesWindow()
+        initGoalView()
         
         githubClient = GithubClient()
-        githubClient.fetchProfile()
+        githubClient.fetchProfile(callback: updateGoalView)
     }
     
     func preferencesDidUpdate() {
         githubClient.updateUserAndToken()
-        githubClient.fetchProfile()
+        githubClient.fetchProfile(callback: updateGoalView)
+    }
+    
+    func updateGoalView(_ now: String) {
+        if let goal = UserDefaults.standard.string(forKey: "goal") {
+            goalView.goalText.stringValue = goal
+        }
+        goalView.nowText.stringValue = now
+    }
+    
+    func initGoalView() {
+        goalMenuItem = statusMenu.item(withTitle: "Goal")
+        goalMenuItem.view = goalView
     }
     
     func initStatusMenu() {
@@ -40,6 +55,12 @@ class StatusMenuController: NSObject, PreferencesWindowDelegate {
     func initPreferencesWindow() {
         preferencesWindow = PreferencesWindow()
         preferencesWindow.delegate = self
+    }
+    
+    @IBAction func profileClicked(_ sender: NSMenuItem) {
+        if let user = UserDefaults.standard.string(forKey: "user") {
+            NSWorkspace.shared.open(URL(string: "https://github.com/\(user)")!)
+        }
     }
     
     @IBAction func preferencesClicked(_ sender: NSMenuItem) {

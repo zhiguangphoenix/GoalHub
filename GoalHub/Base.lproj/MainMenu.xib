@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -14,6 +16,7 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="GoalHub" customModuleProvider="target"/>
         <customObject id="ZAF-7A-cov" customClass="StatusMenuController" customModule="GoalHub" customModuleProvider="target">
             <connections>
+                <outlet property="goalView" destination="88I-3H-MRP" id="VUx-po-dUn"/>
                 <outlet property="preferences" destination="tkC-x5-BmW" id="5ZB-g1-3sq"/>
                 <outlet property="quit" destination="C8N-tH-4vx" id="AUY-fN-Q2F"/>
                 <outlet property="statusMenu" destination="jpy-e4-a7t" id="2VK-kj-Yd5"/>
@@ -21,6 +24,15 @@
         </customObject>
         <menu id="jpy-e4-a7t">
             <items>
+                <menuItem title="Goal" id="Jdm-hA-gDL">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="6s1-ZM-a1I"/>
+                <menuItem title="Profile" keyEquivalent="p" id="dbq-aE-bn7">
+                    <connections>
+                        <action selector="profileClicked:" target="ZAF-7A-cov" id="VLE-K5-PO1"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Preferences" keyEquivalent="," id="tkC-x5-BmW">
                     <connections>
                         <action selector="preferencesClicked:" target="ZAF-7A-cov" id="0kt-gr-g4u"/>
@@ -33,7 +45,60 @@
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-3182" y="-624"/>
+            <point key="canvasLocation" x="-3357" y="-540"/>
         </menu>
+        <customView id="88I-3H-MRP" customClass="GoalView" customModule="GoalHub" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mMR-TG-rak">
+                    <rect key="frame" x="20" y="32" width="48" height="48"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyDown" id="y3q-5e-s8c"/>
+                </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UvB-57-aKE">
+                    <rect key="frame" x="74" y="32" width="40" height="27"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="oal:" id="xet-xh-y2v">
+                        <font key="font" metaFont="systemMedium" size="22"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0T1-Ao-Zfy">
+                    <rect key="frame" x="27" y="7" width="35" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Now:" id="oiC-ib-uw3">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xk3-vx-usK">
+                    <rect key="frame" x="64" y="7" width="118" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Zero contributions" id="dmj-Q3-raW">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cjK-zO-3hG">
+                    <rect key="frame" x="118" y="32" width="61" height="27"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ZERO" id="tIB-Pw-7Mj">
+                        <font key="font" metaFont="system" size="22"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <connections>
+                <outlet property="goalText" destination="cjK-zO-3hG" id="A3f-fA-Pvz"/>
+                <outlet property="logo" destination="mMR-TG-rak" id="wCD-1A-R1Z"/>
+                <outlet property="nowText" destination="Xk3-vx-usK" id="0tG-Gd-dK5"/>
+            </connections>
+            <point key="canvasLocation" x="-2958" y="-495"/>
+        </customView>
     </objects>
 </document>
