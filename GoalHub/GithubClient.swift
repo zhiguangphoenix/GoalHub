@@ -16,17 +16,23 @@ class GithubClient {
     var token = ""
     
     init() {
-        updateUserAndToken()
+        updateUser()
+        updateToken()
     }
     
-    func updateUserAndToken() {
+    func updateUser() {
+        let defaults = UserDefaults.standard
+        
+        if let userString = defaults.string(forKey: "user") {
+            user = userString
+        }
+    }
+    
+    func updateToken() {
         let defaults = UserDefaults.standard
         
         if let tokenString = defaults.string(forKey: "token") {
             token = tokenString
-        }
-        if let userString = defaults.string(forKey: "user") {
-            user = userString
         }
     }
     
@@ -48,6 +54,43 @@ class GithubClient {
                         NSLog("Invalid regexp: \(error.localizedDescription)")
                     }
                 }
+            }
+        }
+    }
+    
+    func fetchEvents(callback: @escaping ([String: Int]) -> Void) {
+        if user != "" {
+            let headers: HTTPHeaders = [
+                "Accept": "application/json"
+            ]
+            
+            Alamofire.request(
+                "\(BASE_URL)/users/\(user)/events?page=1\(token != "" ? "&access_token=" + token : "")",
+                headers: headers)
+                .responseJSON { response in
+                    if let val = response.result.value {
+                        let json = JSON(val)
+                        var eventsDict: [String: Int] = [
+                            "PUSH": 0,
+                            "ISSUE": 0,
+                            "PULLREQUEST": 0
+                        ]
+                        
+                        json.arrayValue.forEach {
+                            switch $0["type"].stringValue {
+                            case "PushEvent":
+                                eventsDict["PUSH"]! += 1
+                            case "IssuesEvent":
+                                eventsDict["ISSUE"]! += 1
+                            case "PullRequestEvent":
+                                eventsDict["PULLREQUEST"]! += 1
+                            default:
+                                ()
+                            }
+                        }
+                        
+                        callback(eventsDict)
+                    }
             }
         }
     }

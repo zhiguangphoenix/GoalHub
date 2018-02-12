@@ -13,24 +13,44 @@ class StatusMenuController: NSObject, PreferencesWindowDelegate {
     @IBOutlet weak var preferences: NSMenuItem!
     @IBOutlet weak var quit: NSMenuItem!
     @IBOutlet weak var goalView: GoalView!
+    @IBOutlet weak var eventsView: EventsView!
     
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
     var preferencesWindow: PreferencesWindow!
     var githubClient: GithubClient!
     var goalMenuItem: NSMenuItem!
+    var eventMenuItem: NSMenuItem!
     
     override func awakeFromNib() {
         initStatusMenu()
         initPreferencesWindow()
-        initGoalView()
+        initCustomView()
         
         githubClient = GithubClient()
         githubClient.fetchProfile(callback: updateGoalView)
+        githubClient.fetchEvents(callback: updateEventsView)
     }
     
     func preferencesDidUpdate() {
-        githubClient.updateUserAndToken()
-        githubClient.fetchProfile(callback: updateGoalView)
+        let defaults = UserDefaults.standard
+        let user = defaults.string(forKey: "user")
+        let token = defaults.string(forKey: "token")
+        
+        if (user != githubClient.user) {
+            githubClient.updateUser()
+            githubClient.fetchProfile(callback: updateGoalView)
+            githubClient.fetchEvents(callback: updateEventsView)
+        }
+        if (token != githubClient.token) {
+            githubClient.updateToken()
+            githubClient.fetchEvents(callback: updateEventsView)
+        }
+    }
+    
+    func updateEventsView(_ eventsDict: [String: Int]) {
+        eventsView.push.stringValue = String(describing: eventsDict["PUSH"]!) + " times 🍺"
+        eventsView.issue.stringValue = String(describing: eventsDict["ISSUE"]!) + " times 🧀"
+        eventsView.pullRequest.stringValue = String(describing: eventsDict["PULLREQUEST"]!) + " times 🍭"
     }
     
     func updateGoalView(_ now: String) {
@@ -40,9 +60,11 @@ class StatusMenuController: NSObject, PreferencesWindowDelegate {
         goalView.nowText.stringValue = now
     }
     
-    func initGoalView() {
+    func initCustomView() {
         goalMenuItem = statusMenu.item(withTitle: "Goal")
         goalMenuItem.view = goalView
+        eventMenuItem = statusMenu.item(withTitle: "Events")
+        eventMenuItem.view = eventsView
     }
     
     func initStatusMenu() {

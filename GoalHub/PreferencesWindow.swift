@@ -44,7 +44,6 @@ class PreferencesWindow: NSWindowController {
         if let goal = defaults.string(forKey: "goal") {
             goalInput.stringValue = goal
         }
-      
     }
     
     @IBAction func updateToken(_ sender: NSButton) {
