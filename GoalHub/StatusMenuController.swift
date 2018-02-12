@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class StatusMenuController: NSObject, PreferencesWindowDelegate {
+class StatusMenuController: NSObject, PreferencesWindowDelegate, NSUserNotificationCenterDelegate {
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var preferences: NSMenuItem!
     @IBOutlet weak var quit: NSMenuItem!
@@ -20,6 +20,7 @@ class StatusMenuController: NSObject, PreferencesWindowDelegate {
     var githubClient: GithubClient!
     var goalMenuItem: NSMenuItem!
     var eventMenuItem: NSMenuItem!
+    var notiTimer: Timer!
     
     override func awakeFromNib() {
         initStatusMenu()
@@ -29,6 +30,25 @@ class StatusMenuController: NSObject, PreferencesWindowDelegate {
         githubClient = GithubClient()
         githubClient.fetchProfile(callback: updateGoalView)
         githubClient.fetchEvents(callback: updateEventsView)
+        
+        notiTimer = Timer.scheduledTimer(timeInterval: 86400, target: self, selector: #selector(registerNoti), userInfo: nil, repeats: true)
+    }
+    
+    @objc func registerNoti() {
+        let noti = NSUserNotification()
+        noti.title = "Update Data"
+        noti.informativeText = "Current User: \(githubClient.user)"
+        
+        githubClient.fetchProfile(callback: updateGoalView)
+        githubClient.fetchEvents(callback: updateEventsView)
+        
+        let nc = NSUserNotificationCenter.default
+        nc.delegate = self
+        nc.scheduleNotification(noti)
+    }
+    
+    func updateGoal() {
+        goalView.goalText.stringValue = UserDefaults.standard.string(forKey: "goal")!
     }
     
     func preferencesDidUpdate() {
@@ -91,6 +111,11 @@ class StatusMenuController: NSObject, PreferencesWindowDelegate {
     }
     
     @IBAction func quitClicked(_ sender: NSMenuItem) {
+        notiTimer.invalidate()
         NSApplication.shared.terminate(sender)
+    }
+    
+    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
+        return true
     }
 }

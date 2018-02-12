@@ -63,18 +63,18 @@ class GithubClient {
             let headers: HTTPHeaders = [
                 "Accept": "application/json"
             ]
-            
+            var eventsDict: [String: Int] = [
+                "PUSH": 0,
+                "ISSUE": 0,
+                "PULLREQUEST": 0
+            ]
+
             Alamofire.request(
-                "\(BASE_URL)/users/\(user)/events?page=1\(token != "" ? "&access_token=" + token : "")",
+                "\(BASE_URL)/users/\(user)/events\(token != "" ? "?access_token=" + token : "")",
                 headers: headers)
                 .responseJSON { response in
                     if let val = response.result.value {
                         let json = JSON(val)
-                        var eventsDict: [String: Int] = [
-                            "PUSH": 0,
-                            "ISSUE": 0,
-                            "PULLREQUEST": 0
-                        ]
                         
                         json.arrayValue.forEach {
                             switch $0["type"].stringValue {
@@ -89,7 +89,29 @@ class GithubClient {
                             }
                         }
                         
-                        callback(eventsDict)
+                        Alamofire.request(
+                            "\(self.BASE_URL)/users/\(self.user)/events\(self.token != "" ? "?page=2&access_token=" + self.token : "")",
+                            headers: headers)
+                            .responseJSON { response in
+                                if let val = response.result.value {
+                                    let json = JSON(val)
+                                    
+                                    json.arrayValue.forEach {
+                                        switch $0["type"].stringValue {
+                                        case "PushEvent":
+                                            eventsDict["PUSH"]! += 1
+                                        case "IssuesEvent":
+                                            eventsDict["ISSUE"]! += 1
+                                        case "PullRequestEvent":
+                                            eventsDict["PULLREQUEST"]! += 1
+                                        default:
+                                            ()
+                                        }
+                                    }
+                                    
+                                    callback(eventsDict)
+                                }
+                        }
                     }
             }
         }

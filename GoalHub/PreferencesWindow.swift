@@ -10,6 +10,7 @@ import Cocoa
 
 protocol PreferencesWindowDelegate {
     func preferencesDidUpdate()
+    func updateGoal()
 }
 
 class PreferencesWindow: NSWindowController {
@@ -19,6 +20,7 @@ class PreferencesWindow: NSWindowController {
     @IBOutlet weak var userUpdatedNoti: NSTextField!
     @IBOutlet weak var tokenUpdatedNoti: NSTextField!
     @IBOutlet weak var goalUpdatedNoti: NSTextField!
+    @IBOutlet weak var logo: NSImageView!
     
     var delegate: PreferencesWindowDelegate?
     
@@ -30,6 +32,7 @@ class PreferencesWindow: NSWindowController {
         super.windowDidLoad()
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         fillTokenInput()
+        logo.image = NSImage(named: NSImage.Name(rawValue: "AppIcon"))
     }
     
     func fillTokenInput() {
@@ -71,7 +74,7 @@ class PreferencesWindow: NSWindowController {
         let goal = goalInput.stringValue
         
         defaults.set(goal, forKey: "goal")
-        delegate?.preferencesDidUpdate()
+        delegate?.updateGoal()
         goalUpdatedNoti.stringValue = "👌Updated!"
         delayRemoveText(goalUpdatedNoti, 3)
     }

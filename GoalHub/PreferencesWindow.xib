@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="goalInput" destination="4a1-Re-lB5" id="lZf-Ad-1pC"/>
                 <outlet property="goalUpdatedNoti" destination="k7H-NT-AzL" id="Esk-Wd-Z29"/>
+                <outlet property="logo" destination="pQJ-8J-OMA" id="0Bu-kZ-3jE"/>
                 <outlet property="tokenInput" destination="qZp-EA-wum" id="Jo4-K6-YL3"/>
                 <outlet property="tokenUpdatedNoti" destination="zqW-VI-SEP" id="EoF-l6-PGN"/>
                 <outlet property="userInput" destination="XXw-oF-5cl" id="qBf-2z-rOr"/>
@@ -147,12 +148,35 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r9Y-qM-l5E">
+                        <rect key="frame" x="73" y="27" width="334" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Copyright © 2018 ilime (Yue Yang). All rights reserved." id="Xm2-Mq-YNa">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pQJ-8J-OMA">
+                        <rect key="frame" x="170" y="52" width="48" height="48"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="BaY-eg-dfV"/>
+                    </imageView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tOj-AG-MqC">
+                        <rect key="frame" x="214" y="52" width="98" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="oalHub" id="pKB-uk-Ycd">
+                            <font key="font" metaFont="systemBold" size="28"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="-45" y="17"/>
+            <point key="canvasLocation" x="-467" y="57"/>
         </window>
     </objects>
 </document>
