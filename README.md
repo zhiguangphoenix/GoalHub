@@ -18,6 +18,12 @@
 
 Go to [release page](https://github.com/ilime/GoalHub/releases)
 
+When you first open GoalHub, you need to set your github username in **Preferences**.
+
+If your want to access private repos. Please go to [https://github.com/settings/tokens](https://github.com/settings/tokens).
+
+Generate your personal token with **repo scope** checked.
+
 ## How to develop
 
 ```
