@@ -262,6 +262,11 @@
                         <action selector="profileClicked:" target="ZAF-7A-cov" id="VLE-K5-PO1"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Update Data" keyEquivalent="u" id="0Cf-C3-4m8">
+                    <connections>
+                        <action selector="updateClicked:" target="ZAF-7A-cov" id="ucB-zi-nGf"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Preferences" keyEquivalent="," id="tkC-x5-BmW">
                     <connections>
                         <action selector="preferencesClicked:" target="ZAF-7A-cov" id="0kt-gr-g4u"/>

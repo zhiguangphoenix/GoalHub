@@ -31,7 +31,7 @@ class StatusMenuController: NSObject, PreferencesWindowDelegate, NSUserNotificat
         githubClient.fetchProfile(callback: updateGoalView)
         githubClient.fetchEvents(callback: updateEventsView)
         
-        notiTimer = Timer.scheduledTimer(timeInterval: 86400, target: self, selector: #selector(registerNoti), userInfo: nil, repeats: true)
+        notiTimer = Timer.scheduledTimer(timeInterval: 7200, target: self, selector: #selector(registerNoti), userInfo: nil, repeats: true)
     }
     
     @objc func registerNoti() {
@@ -113,6 +113,10 @@ class StatusMenuController: NSObject, PreferencesWindowDelegate, NSUserNotificat
     @IBAction func quitClicked(_ sender: NSMenuItem) {
         notiTimer.invalidate()
         NSApplication.shared.terminate(sender)
+    }
+    
+    @IBAction func updateClicked(_ sender: NSMenuItem) {
+        registerNoti()
     }
     
     func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
