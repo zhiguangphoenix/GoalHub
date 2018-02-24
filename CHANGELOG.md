@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.2.0
+
+- Now can set update data's frequency
+
 ## 1.1.0
 
 - Add Update Data MenuItem
