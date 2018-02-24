@@ -11,6 +11,7 @@ import Cocoa
 protocol PreferencesWindowDelegate {
     func preferencesDidUpdate()
     func updateGoal()
+    func updateFre(timeInterval: Double)
 }
 
 class PreferencesWindow: NSWindowController {
@@ -21,6 +22,8 @@ class PreferencesWindow: NSWindowController {
     @IBOutlet weak var tokenUpdatedNoti: NSTextField!
     @IBOutlet weak var goalUpdatedNoti: NSTextField!
     @IBOutlet weak var logo: NSImageView!
+    @IBOutlet weak var FrequencySelect: NSPopUpButton!
+    @IBOutlet weak var frequencyUpdateNoti: NSTextField!
     
     var delegate: PreferencesWindowDelegate?
     
@@ -46,6 +49,21 @@ class PreferencesWindow: NSWindowController {
         }
         if let goal = defaults.string(forKey: "goal") {
             goalInput.stringValue = goal
+        }
+        let fre = defaults.integer(forKey: "fre")
+        if fre > 0 {
+            switch fre {
+            case 7200:
+                FrequencySelect.selectItem(withTitle: "2h")
+            case 21600:
+                FrequencySelect.selectItem(withTitle: "6h")
+            case 43200:
+                FrequencySelect.selectItem(withTitle: "12h")
+            case 86400:
+                FrequencySelect.selectItem(withTitle: "24h")
+            default:
+                break
+            }
         }
     }
     
@@ -77,6 +95,32 @@ class PreferencesWindow: NSWindowController {
         delegate?.updateGoal()
         goalUpdatedNoti.stringValue = "👌Updated!"
         delayRemoveText(goalUpdatedNoti, 3)
+    }
+    
+    @IBAction func updateFrequency(_ sender: NSButton) {
+        let defaults = UserDefaults.standard
+        let fre = FrequencySelect.selectedItem!.title
+        
+        switch fre {
+        case "2h":
+            defaults.set(7200, forKey: "fre")
+            delegate?.updateFre(timeInterval: 7200)
+        case "6h":
+            defaults.set(21600, forKey: "fre")
+            delegate?.updateFre(timeInterval: 21600)
+        case "12h":
+            defaults.set(43200, forKey: "fre")
+            delegate?.updateFre(timeInterval: 43200)
+        case "24h":
+            defaults.set(86400, forKey: "fre")
+            delegate?.updateFre(timeInterval: 86400)
+        default:
+            defaults.set(21600, forKey: "fre")
+            delegate?.updateFre(timeInterval: 21600)
+        }
+        
+        frequencyUpdateNoti.stringValue = "👌Updated!"
+        delayRemoveText(frequencyUpdateNoti, 3)
     }
     
     func delayRemoveText(_ field: NSTextField, _ delay: Int) {

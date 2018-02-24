@@ -31,7 +31,11 @@ class StatusMenuController: NSObject, PreferencesWindowDelegate, NSUserNotificat
         githubClient.fetchProfile(callback: updateGoalView)
         githubClient.fetchEvents(callback: updateEventsView)
         
-        notiTimer = Timer.scheduledTimer(timeInterval: 7200, target: self, selector: #selector(registerNoti), userInfo: nil, repeats: true)
+        let fre = UserDefaults.standard.integer(forKey: "fre")
+        notiTimer = Timer.scheduledTimer(
+            timeInterval: TimeInterval(fre == 0 ? 21600 : fre),
+            target: self,
+            selector: #selector(registerNoti), userInfo: nil, repeats: true)
     }
     
     @objc func registerNoti() {
@@ -45,6 +49,11 @@ class StatusMenuController: NSObject, PreferencesWindowDelegate, NSUserNotificat
         let nc = NSUserNotificationCenter.default
         nc.delegate = self
         nc.scheduleNotification(noti)
+    }
+    
+    func updateFre(timeInterval: Double) {
+        notiTimer.invalidate()
+        notiTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(registerNoti), userInfo: nil, repeats: true)
     }
     
     func updateGoal() {
