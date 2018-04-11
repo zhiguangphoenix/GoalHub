@@ -26,8 +26,11 @@ Generate your personal token with **repo scope** checked.
 
 ## How to develop
 
-```
-git clone git@github.com:ilime/GoalHub.git
+```sh
+git clone git@github.com:ilime/GoalHub.git && cd GoalHub
+
+// Make sure Carthage existed: brew install carthage
+carthage update
 
 // Open it with xcode
 ```
