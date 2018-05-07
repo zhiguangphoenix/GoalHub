@@ -66,7 +66,10 @@ class GithubClient {
             var eventsDict: [String: Int] = [
                 "PUSH": 0,
                 "ISSUE": 0,
-                "PULLREQUEST": 0
+                "PULLREQUEST": 0,
+                "STAR": 0,
+                "CREATE": 0,
+                "GIST": 0
             ]
 
             Alamofire.request(
@@ -84,13 +87,19 @@ class GithubClient {
                                 eventsDict["ISSUE"]! += 1
                             case "PullRequestEvent":
                                 eventsDict["PULLREQUEST"]! += 1
+                            case "WatchEvent":
+                                eventsDict["STAR"]! += 1
+                            case "CreateEvent":
+                                eventsDict["CREATE"]! += 1
+                            case "GistEvent":
+                                eventsDict["GIST"]! += 1
                             default:
                                 ()
                             }
                         }
                         
                         Alamofire.request(
-                            "\(self.BASE_URL)/users/\(self.user)/events\(self.token != "" ? "?page=2&access_token=" + self.token : "")",
+                            "\(self.BASE_URL)/users/\(self.user)/events\(self.token != "" ? "?page=2&access_token=" + self.token : "?page=2")",
                             headers: headers)
                             .responseJSON { response in
                                 if let val = response.result.value {
@@ -104,6 +113,12 @@ class GithubClient {
                                             eventsDict["ISSUE"]! += 1
                                         case "PullRequestEvent":
                                             eventsDict["PULLREQUEST"]! += 1
+                                        case "WatchEvent":
+                                            eventsDict["STAR"]! += 1
+                                        case "CreateEvent":
+                                            eventsDict["CREATE"]! += 1
+                                        case "GistEvent":
+                                            eventsDict["GIST"]! += 1
                                         default:
                                             ()
                                         }

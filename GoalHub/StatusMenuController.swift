@@ -80,6 +80,9 @@ class StatusMenuController: NSObject, PreferencesWindowDelegate, NSUserNotificat
         eventsView.push.stringValue = String(describing: eventsDict["PUSH"]!) + " times 🍺"
         eventsView.issue.stringValue = String(describing: eventsDict["ISSUE"]!) + " times 🧀"
         eventsView.pullRequest.stringValue = String(describing: eventsDict["PULLREQUEST"]!) + " times 🍭"
+        eventsView.star.stringValue = String(describing: eventsDict["STAR"]!) + " times 🌟"
+        eventsView.create.stringValue = String(describing: eventsDict["CREATE"]!) + " times 🤡"
+        eventsView.gist.stringValue = String(describing: eventsDict["GIST"]!) + " times 📝"
     }
     
     func updateGoalView(_ now: String) {
