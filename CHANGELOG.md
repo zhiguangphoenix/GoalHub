@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.3.0
+
+- Add some events
+- Bugs fixed
+
 ## 1.2.0
 
 - Now can set update data's frequency
