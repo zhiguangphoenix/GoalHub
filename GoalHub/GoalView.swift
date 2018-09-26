@@ -14,6 +14,6 @@ class GoalView: NSView {
     @IBOutlet weak var nowText: NSTextField!
     
     override func awakeFromNib() {
-        logo.image = NSImage(named: NSImage.Name(rawValue: "AppIcon"))
+        logo.image = NSImage(named: "AppIcon")
     }
 }

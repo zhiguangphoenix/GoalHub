@@ -28,14 +28,14 @@ class PreferencesWindow: NSWindowController {
     var delegate: PreferencesWindowDelegate?
     
     override var windowNibName: NSNib.Name? {
-        return NSNib.Name(rawValue: "PreferencesWindow")
+        return "PreferencesWindow"
     }
     
     override func windowDidLoad() {
         super.windowDidLoad()
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         fillTokenInput()
-        logo.image = NSImage(named: NSImage.Name(rawValue: "AppIcon"))
+        logo.image = NSImage(named: "AppIcon")
     }
     
     func fillTokenInput() {

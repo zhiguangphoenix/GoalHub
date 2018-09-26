@@ -101,7 +101,7 @@ class StatusMenuController: NSObject, PreferencesWindowDelegate, NSUserNotificat
     
     func initStatusMenu() {
         if let button = statusItem.button {
-            button.image = NSImage(named: NSImage.Name(rawValue: "statusMenuIcon"))
+            button.image = NSImage(named: "statusMenuIcon")
             statusItem.menu = statusMenu
         }
     }
